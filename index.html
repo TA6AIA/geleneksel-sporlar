@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ses Oynatıcı Projesi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .player-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 350px;
+        }
+        h2 { 
+            color: #333; 
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        audio { 
+            width: 100%; 
+            margin-top: 10px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        <h2>Proje Ses Dosyası</h2>
+        
+        <!-- AŞAĞIDAKİ ses1.mp3 YAZISINI KENDİ SES DOSYANIZIN ADIYLA DEĞİŞTİRİN -->
+        <audio controls>
+            <source src="ses1.mp4" type="audio/mp4">
+            Tarayıcınız ses öğesini desteklemiyor.
+        </audio>
+    </div>
+
+</body>
+</html>
