@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ses Oynatıcı Projesi</title>
+    <title>Geleneksel Sporlar Ses Rehberi</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,26 +26,64 @@
         }
         h2 { 
             color: #333; 
-            margin-bottom: 20px;
-            font-size: 22px;
+            margin-bottom: 20px; 
+            font-size: 24px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         audio { 
             width: 100%; 
             margin-top: 10px; 
+        }
+        .error { 
+            color: #d9534f; 
+            font-weight: bold; 
         }
     </style>
 </head>
 <body>
 
     <div class="player-container">
-        <h2>Proje Ses Dosyası</h2>
+        <!-- Başlık alanı başlangıçta boş kalacak, JavaScript dolduracak -->
+        <h2 id="spor-adi">YÜKLENİYOR...</h2>
         
-        <!-- AŞAĞIDAKİ ses1.mp3 YAZISINI KENDİ SES DOSYANIZIN ADIYLA DEĞİŞTİRİN -->
-        <audio controls>
-            <source src="ses1.mp4" type="audio/mp4">
-            Tarayıcınız ses öğesini desteklemiyor.
-        </audio>
+        <div id="player-area">
+            <audio id="audio-player" controls>
+                <source id="audio-source" src="" type="audio/mp4">
+                Tarayıcınız ses öğesini desteklemiyor.
+            </audio>
+        </div>
     </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // URL'deki parametreyi alıyoruz
+            const urlParams = new URLSearchParams(window.location.search);
+            let sporId = urlParams.get('spor');
+
+            const sporAdiElement = document.getElementById('spor-adi');
+            const playerElement = document.getElementById('audio-player');
+            const sourceElement = document.getElementById('audio-source');
+
+            if (sporId) {
+                // Küçük harfe çevirip güvenlik sağlama
+                sporId = sporId.toLowerCase().trim();
+                
+                // Başlığı temiz adla güncelle
+                let temizAd = sporId.replace(/_/g, ' ');
+                sporAdiElement.innerText = temizAd;
+                
+                // Doğrudan ses dosyasının adını ata
+                sourceElement.setAttribute('src', sporId + '.mp4');
+                
+                // Oynatıcıyı yeniden yükle
+                playerElement.load();
+            } else {
+                sporAdiElement.innerHTML = "<span class='error'>GEÇERSİZ QR KOD!</span>";
+                playerElement.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 </html>
